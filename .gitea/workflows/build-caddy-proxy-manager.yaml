@@ -25,7 +25,7 @@ jobs:
       - name: Extract add-on version
         id: version
         run: |
-          version="$(sed -n 's/^version: \"\\(.*\\)\"/\\1/p' caddy-proxy-manager/config.yaml)"
+          version="$(awk -F'"' '/^version:/ { print $2; exit }' caddy-proxy-manager/config.yaml)"
           if [ -z "$version" ]; then
             echo "Failed to extract version from config.yaml" >&2
             exit 1
