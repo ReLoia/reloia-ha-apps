@@ -12,7 +12,7 @@ boot: auto
 init: false
 host_network: true
 panel_icon: "mdi:server-network"
-webui: "http://[HOST]:3000"
+webui: "http://[HOST]:[PORT:3000]"
 stage: experimental
 map:
   - addon_config:rw
