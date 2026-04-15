@@ -1,4 +1,5 @@
 ARG CPM_REF=2adb8e38074c0555be50ffad120fdf7a4b8be1fd
+ARG BUILD_VERSION=0.1.0
 
 FROM ubuntu:24.04 AS upstream
 ARG CPM_REF
@@ -42,6 +43,7 @@ RUN GOPROXY=direct xcaddy build \
 FROM clickhouse/clickhouse-server:latest AS clickhouse
 
 FROM ubuntu:24.04
+ARG BUILD_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
@@ -52,6 +54,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sqlite3 \
     wget \
     && rm -rf /var/lib/apt/lists/*
+
+LABEL \
+  io.hass.version="${BUILD_VERSION}" \
+  io.hass.type="app" \
+  io.hass.arch="aarch64|amd64"
 
 COPY --from=web-builder /usr/local/bin/bun /usr/local/bin/bun
 COPY --from=web-builder /app/public /opt/cpm-web/public

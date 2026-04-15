@@ -1,0 +1,6 @@
+channel: stable
+addons:
+  caddy-proxy-manager:
+    repository: reloia/reloia-ha-apps
+    target: caddy-proxy-manager
+    image: git.reloia.uk/reloia/caddy-proxy-manager

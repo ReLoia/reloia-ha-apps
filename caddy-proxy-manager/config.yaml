@@ -3,14 +3,19 @@ version: "0.1.0"
 slug: "caddy_proxy_manager"
 description: "Home Assistant package for Caddy Proxy Manager"
 url: "https://github.com/fuomag9/caddy-proxy-manager"
+image: "git.reloia.uk/reloia/caddy-proxy-manager"
 arch:
   - amd64
-  - arm64
+  - aarch64
 startup: services
 boot: auto
 init: false
 host_network: true
 panel_icon: "mdi:server-network"
+webui: "http://[HOST]:3000"
+stage: experimental
+map:
+  - addon_config:rw
 options:
   primary_domain: "caddyproxymanager.local"
   base_url: "http://homeassistant.local:3000"
