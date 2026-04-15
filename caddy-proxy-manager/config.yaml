@@ -3,7 +3,7 @@ version: "0.1.0"
 slug: "caddy_proxy_manager"
 description: "Home Assistant package for Caddy Proxy Manager"
 url: "https://github.com/fuomag9/caddy-proxy-manager"
-image: "git.reloia.uk/reloia/caddy-proxy-manager"
+image: "ghcr.io/reloia/caddy-proxy-manager"
 arch:
   - amd64
   - aarch64

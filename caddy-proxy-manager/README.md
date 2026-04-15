@@ -5,7 +5,7 @@ Home Assistant app wrapper for [`fuomag9/caddy-proxy-manager`](https://github.co
 ## Packaging model
 
 - Single container package
-- Home Assistant pulls the published multi-arch image `git.reloia.uk/reloia/caddy-proxy-manager:<version>`
+- Home Assistant pulls the published multi-arch image `ghcr.io/reloia/caddy-proxy-manager:<version>`
 - `host_network: true` so Caddy can bind `80`, `443`, and extra L4 ports directly
 - Local services started inside the container:
   - ClickHouse on `127.0.0.1:8123`
