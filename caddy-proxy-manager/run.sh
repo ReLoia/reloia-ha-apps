@@ -25,6 +25,8 @@ json_opt() {
 
 export PRIMARY_DOMAIN="$(json '.primary_domain')"
 export BASE_URL="$(json '.base_url')"
+export DASHBOARD_PORT="$(json '.dashboard_port')"
+export CLICKHOUSE_PORT="$(json '.clickhouse_port')"
 export SESSION_SECRET="$(json '.session_secret')"
 export ADMIN_USERNAME="$(json '.admin_username')"
 export ADMIN_PASSWORD="$(json '.admin_password')"
@@ -54,7 +56,7 @@ mkdir -p \
 cat > /etc/clickhouse-server/config.d/homeassistant.xml <<EOF
 <clickhouse>
   <listen_host>127.0.0.1</listen_host>
-  <http_port>8123</http_port>
+  <http_port>${CLICKHOUSE_PORT}</http_port>
   <tcp_port>9000</tcp_port>
   <path>${CLICKHOUSE_DIR}/data/</path>
   <tmp_path>${CLICKHOUSE_DIR}/tmp/</tmp_path>
@@ -101,14 +103,14 @@ http://${PRIMARY_DOMAIN}, http://localhost {
 EOF
 
 export NODE_ENV=production
-export PORT=8099
+export PORT="${DASHBOARD_PORT}"
 export HOSTNAME=0.0.0.0
 export NEXTAUTH_URL="${BASE_URL}"
 export CADDY_API_URL="http://127.0.0.1:2019"
 export DATABASE_PATH="${WEB_DATA_DIR}/caddy-proxy-manager.db"
 export DATABASE_URL="file:${WEB_DATA_DIR}/caddy-proxy-manager.db"
 export CERTS_DIRECTORY="${WEB_DATA_DIR}/certs"
-export CLICKHOUSE_URL="http://127.0.0.1:8123"
+export CLICKHOUSE_URL="http://127.0.0.1:${CLICKHOUSE_PORT}"
 export CLICKHOUSE_USER="default"
 export CLICKHOUSE_PASSWORD=""
 export CLICKHOUSE_DB="analytics"
@@ -119,7 +121,7 @@ export XDG_DATA_HOME="${CADDY_DATA_DIR}"
 CLICKHOUSE_PID=$!
 
 for _ in $(seq 1 30); do
-  if curl -fsS http://127.0.0.1:8123/ping >/dev/null 2>&1; then
+  if curl -fsS "http://127.0.0.1:${CLICKHOUSE_PORT}/ping" >/dev/null 2>&1; then
     break
   fi
   sleep 1

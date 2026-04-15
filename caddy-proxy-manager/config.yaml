@@ -17,6 +17,8 @@ stage: experimental
 map:
   - addon_config:rw
 options:
+  dashboard_port: 8099
+  clickhouse_port: 9123
   primary_domain: "caddyproxymanager.local"
   base_url: "http://homeassistant.local:8099"
   session_secret: "change-me-with-a-long-random-secret"
@@ -32,6 +34,8 @@ options:
   oauth_userinfo_url: ""
   oauth_allow_auto_linking: false
 schema:
+  dashboard_port: int(1024,65535)
+  clickhouse_port: int(1024,65535)
   primary_domain: str
   base_url: url
   session_secret: password
