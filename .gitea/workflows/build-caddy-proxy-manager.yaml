@@ -22,6 +22,16 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Install Docker CLI
+        run: |
+          if command -v docker >/dev/null 2>&1; then
+            docker version || true
+            exit 0
+          fi
+          apt-get update
+          apt-get install -y --no-install-recommends docker.io
+          docker version || true
+
       - name: Extract add-on version
         id: version
         run: |
