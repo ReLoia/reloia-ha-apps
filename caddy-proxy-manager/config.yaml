@@ -1,0 +1,43 @@
+name: "Caddy Proxy Manager"
+version: "0.1.0"
+slug: "caddy_proxy_manager"
+description: "Home Assistant package for Caddy Proxy Manager"
+url: "https://github.com/fuomag9/caddy-proxy-manager"
+arch:
+  - amd64
+  - arm64
+startup: services
+boot: auto
+init: false
+host_network: true
+panel_icon: "mdi:server-network"
+options:
+  primary_domain: "caddyproxymanager.local"
+  base_url: "http://homeassistant.local:3000"
+  session_secret: "change-me-with-a-long-random-secret"
+  admin_username: "admin"
+  admin_password: "ChangeMe-Now123!"
+  oauth_enabled: false
+  oauth_provider_name: "OAuth2"
+  oauth_client_id: ""
+  oauth_client_secret: ""
+  oauth_issuer: ""
+  oauth_authorization_url: ""
+  oauth_token_url: ""
+  oauth_userinfo_url: ""
+  oauth_allow_auto_linking: false
+schema:
+  primary_domain: str
+  base_url: url
+  session_secret: password
+  admin_username: str
+  admin_password: password
+  oauth_enabled: bool
+  oauth_provider_name: str
+  oauth_client_id: str?
+  oauth_client_secret: password?
+  oauth_issuer: str?
+  oauth_authorization_url: str?
+  oauth_token_url: str?
+  oauth_userinfo_url: str?
+  oauth_allow_auto_linking: bool
