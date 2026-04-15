@@ -12,13 +12,13 @@ boot: auto
 init: false
 host_network: true
 panel_icon: "mdi:server-network"
-webui: "http://[HOST]:[PORT:3000]"
+webui: "http://[HOST]:[PORT:8099]"
 stage: experimental
 map:
   - addon_config:rw
 options:
   primary_domain: "caddyproxymanager.local"
-  base_url: "http://homeassistant.local:3000"
+  base_url: "http://homeassistant.local:8099"
   session_secret: "change-me-with-a-long-random-secret"
   admin_username: "admin"
   admin_password: "ChangeMe-Now123!"

@@ -101,7 +101,7 @@ http://${PRIMARY_DOMAIN}, http://localhost {
 EOF
 
 export NODE_ENV=production
-export PORT=3000
+export PORT=8099
 export HOSTNAME=0.0.0.0
 export NEXTAUTH_URL="${BASE_URL}"
 export CADDY_API_URL="http://127.0.0.1:2019"
