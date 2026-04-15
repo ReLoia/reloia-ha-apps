@@ -1,5 +1,5 @@
 name: "Caddy Proxy Manager"
-version: "0.1.0"
+version: "0.1.1"
 slug: "caddy-proxy-manager"
 description: "Home Assistant package for Caddy Proxy Manager"
 url: "https://github.com/fuomag9/caddy-proxy-manager"
