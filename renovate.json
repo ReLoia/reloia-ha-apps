@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "timezone": "Europe/Rome",
+  "prConcurrentLimit": 1,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^papra/Dockerfile$/", "/^papra/config\\.yaml$/"],
+      "matchStrings": [
+        "ghcr\\.io/papra-hq/papra:(?<currentValue>\\d+\\.\\d+\\.\\d+)-root",
+        "version: \"(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:-\\d+)?\""
+      ],
+      "depNameTemplate": "ghcr.io/papra-hq/papra",
+      "datasourceTemplate": "docker",
+      "extractVersionTemplate": "^(?<version>\\d+\\.\\d+\\.\\d+)-root$",
+      "versioningTemplate": "semver-coerced"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["dockerfile"],
+      "matchPackageNames": ["ghcr.io/papra-hq/papra"],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": ["ghcr.io/papra-hq/papra"],
+      "commitMessageTopic": "Papra",
+      "automerge": false
+    }
+  ]
+}
