@@ -1,0 +1,37 @@
+name: "Papra"
+version: "26.7.1"
+slug: papra
+description: "Minimalistic document archiving platform"
+url: "https://github.com/papra-hq/papra"
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: auto
+init: false
+backup: cold
+ports:
+  1221/tcp: 1221
+ports_description:
+  1221/tcp: "Papra web interface"
+watchdog: "http://[HOST]:[PORT:1221]/api/health"
+options:
+  base_url: "http://homeassistant.local:1221"
+  auth_secret: ""
+  smtp_enabled: false
+  smtp_host: ""
+  smtp_port: 587
+  smtp_secure: false
+  smtp_user: ""
+  smtp_password: ""
+  smtp_from: ""
+schema:
+  base_url: url
+  auth_secret: password?
+  smtp_enabled: bool
+  smtp_host: str?
+  smtp_port: port?
+  smtp_secure: bool?
+  smtp_user: str?
+  smtp_password: password?
+  smtp_from: str?
