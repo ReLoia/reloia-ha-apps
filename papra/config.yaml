@@ -1,5 +1,5 @@
 name: "Papra"
-version: "26.7.1"
+version: "26.7.1-2"
 slug: papra
 description: "Minimalistic document archiving platform"
 url: "https://github.com/papra-hq/papra"
@@ -25,6 +25,9 @@ options:
   smtp_user: ""
   smtp_password: ""
   smtp_from: ""
+  registration_enabled: true
+  ocr_languages: "ita,eng"
+  env_vars: []
 schema:
   base_url: url
   auth_secret: password?
@@ -35,3 +38,8 @@ schema:
   smtp_user: str?
   smtp_password: password?
   smtp_from: str?
+  registration_enabled: bool
+  ocr_languages: str?
+  env_vars:
+    - name: str
+      value: str

@@ -36,7 +36,16 @@ if [ "$(opt smtp_enabled)" = "true" ]; then
   [ -n "$(opt smtp_from)" ]     && export EMAILS_FROM_ADDRESS="$(opt smtp_from)"
 fi
 
-# Optional: OCR languages
-# export DOCUMENTS_OCR_LANGUAGES="ita,eng"
+REG="$(opt registration_enabled)"
+export AUTH_IS_REGISTRATION_ENABLED="${REG:-true}"
+
+[ -n "$(opt ocr_languages)" ] && export DOCUMENTS_OCR_LANGUAGES="$(opt ocr_languages)"
+
+eval "$(node -e '
+const o = require("/data/options.json");
+for (const e of (o.env_vars || [])) {
+  if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(e.name)) continue;
+  console.log("export " + e.name + "=\x27" + String(e.value).replace(/\x27/g, "\x27\\\x27\x27") + "\x27");
+}')"
 
 exec docker-entrypoint.sh pnpm start:with-migrations

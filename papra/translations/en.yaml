@@ -23,3 +23,13 @@ configuration:
     description: For Gmail, use an app password, not your account password.
   smtp_from:
     name: From address
+  registration_enabled:
+    name: Allow public registration
+    description: Turn off after creating your account. Invite others from Papra's Members page.
+  ocr_languages:
+    name: OCR languages
+    description: Tesseract codes, comma-separated (e.g. ita,eng)
+  env_vars:
+    name: Extra environment variables
+    description: Any other Papra setting, as name/value pairs.
+
